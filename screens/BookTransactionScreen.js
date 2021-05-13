@@ -68,11 +68,11 @@ export default class TransactionScreen extends React.Component {
       })
       //change book status
       db.collection("books").doc(this.state.scannedBookId).update({
-        'bookAvailability': false
+        'bookAvailablity': false
       })
       //change number  of issued books for student
       db.collection("students").doc(this.state.scannedStudentId).update({
-        'numberOfBooksIssued': firebase.firestore.FieldValue.increment(1)
+        'noOfBooksIssued': firebase.firestore.FieldValue.increment(1)
       })
       this.setState(
         {scannedBookId:'',
@@ -89,11 +89,11 @@ export default class TransactionScreen extends React.Component {
       })
       //change book status
       db.collection("books").doc(this.state.scannedBookId).update({
-        'bookAvailability': true
+        'bookAvailablity': true
       })
       //change number  of issued books for student
       db.collection("students").doc(this.state.scannedStudentId).update({
-        'numberOfBooksIssued': firebase.firestore.FieldValue.increment(-1)
+        'noOfBooksIssued': firebase.firestore.FieldValue.increment(-1)
       })
       this.setState(
         {scannedBookId:'',
@@ -107,7 +107,7 @@ export default class TransactionScreen extends React.Component {
       .then((doc)=>{
           //snapshot.forEach((doc)=>{
             var book = doc.data()
-            if(book.bookAvailability){
+            if(book.bookAvailablity){
                 this.initiateBookIssue();       
                 transactionMessage = "Book Issued"
                 ToastAndroid.show(transactionMessage, ToastAndroid.SHORT);
